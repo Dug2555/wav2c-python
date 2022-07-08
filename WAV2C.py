@@ -44,9 +44,12 @@ while True:
 file.close()
 
 file.close()
+size = (len(hold) - 1) * 44
+print()
 print(hold[0])
 
 output = open(hfile, "w")
+output.write("const unsigned char song [" + str(size) + "] = {")
 holderString = ""
 for i in hold:
 	if i == 0:
@@ -57,3 +60,4 @@ for i in hold:
 	holderString += "\n"
 
 output.write(holderString[:-3])
+output.write("\n};")
