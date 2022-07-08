@@ -37,7 +37,7 @@ file = open(fileName, "rb")
 hold = []
 
 while True:
-	chunk = file.read(40)
+	chunk = file.read(44)
 	if chunk == b"":
 		break
 	hold.append(chunk)
@@ -47,7 +47,13 @@ file.close()
 print(hold[0])
 
 output = open(hfile, "w")
+holderString = ""
 for i in hold:
+	if i == 0:
+		continue
 	for j in i:
-		output.write(hex(j))
-		output.write("\n")
+		holderString += hex(j)
+		holderString += ", "
+	holderString += "\n"
+
+output.write(holderString[:-3])
